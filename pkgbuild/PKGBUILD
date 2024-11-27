@@ -1,18 +1,12 @@
-# Maintainer: Tales A. Mendonça <talesam@gmail.com>
+# Maintainer (original): Rin Cat <dev@rincat.ch>
+# Modified by: Leonardo Berbert <leo4berbert@gmail.com>
 
-pkgname=pkgbuild-template
-pkgdesc="Package template for Communitybig"
-# Uncomment and edit the following lines as needed
-#depends=('')
-#makedepends=('')
-#optdepends=('')
-#conflicts=('')
-#provides=('')
-#replaces=('')
+pkgname=comm-rtl88x2bu-dkms
+pkgdesc="Kernel module for Realtek rtl88x2bu WiFi chipset"
 pkgver=$(date +%y.%m.%d)
 pkgrel=$(date +%H%M)
 arch=('any')
-license=('MIT')
+license=('GPL2')
 url="https://github.com/communitybig/${pkgname}"
 source=("git+${url}.git")
 md5sums=('SKIP')
@@ -26,39 +20,26 @@ fi
 
 prepare() {
     cd "${srcdir}/${pkgname}"
-    # Add any preparation steps here, if needed
-    # For example: patch -p1 < "${srcdir}/patch-file.patch"
+    # Apply any preparation steps here
 }
 
 build() {
     cd "${srcdir}/${pkgname}"
-    # Add build steps here, if needed
-    # For example: make
-}
-
-check() {
-    cd "${srcdir}/${pkgname}"
-    # Add check/test steps here, if needed
-    # For example: make check
+    # Add build steps if necessary
 }
 
 package() {
     cd "${srcdir}/${pkgname}"
 
-    # Determine the correct source directory
-    if [ -d "${pkgname}" ]; then
-        srcdir="${srcdir}/${pkgname}/${pkgname}"
-    else
-        srcdir="${srcdir}/${pkgname}"
-    fi
+    # Install the DKMS source files
+    mkdir -p "${pkgdir}/usr/src/${pkgname}-${pkgver}"
+    cp -pr * "${pkgdir}/usr/src/${pkgname}-${pkgver}"
+    install -Dm644 dkms.conf "${pkgdir}/usr/src/${pkgname}-${pkgver}/dkms.conf"
+    sed -e "s/@PKGVER@/${pkgver}/" -i "${pkgdir}/usr/src/${pkgname}-${pkgver}/dkms.conf"
 
-    # Install files
-    local dirs=("usr" "etc" "opt")
-    for dir in "${dirs[@]}"; do
-        if [ -d "${srcdir}/${dir}" ]; then
-            cp -a "${srcdir}/${dir}" "${pkgdir}/"
-        fi
-    done
+    # Add modprobe configuration to blacklist conflicting drivers
+    mkdir -p "${pkgdir}/usr/lib/modprobe.d/"
+    echo "blacklist rtw88_8822bu" > "${pkgdir}/usr/lib/modprobe.d/rtw8822bu.conf"
 
     # Install license file if present
     if [ -f "LICENSE" ]; then
