@@ -7,7 +7,8 @@ pkgver=$(date +%y.%m.%d)
 pkgrel=$(date +%H%M)
 arch=('any')
 license=('GPL2')
-url="https://github.com/communitybig/${pkgname}"
+#url="https://github.com/communitybig/${pkgname}"
+url="https://github.com/RinCat/RTL88x2BU-Linux-Driver"
 source=("git+${url}.git")
 md5sums=('SKIP')
 
@@ -18,18 +19,9 @@ elif [ -e "pkgbuild.install" ]; then
     install=pkgbuild.install
 fi
 
-prepare() {
-    cd "${srcdir}/${pkgname}"
-    # Apply any preparation steps here
-}
-
-build() {
-    cd "${srcdir}/${pkgname}"
-    # Add build steps if necessary
-}
-
 package() {
-    cd "${srcdir}/${pkgname}"
+    # Ajuste para o nome do diretório clonado
+    cd "${srcdir}/RTL88x2BU-Linux-Driver"
 
     # Install the DKMS source files
     mkdir -p "${pkgdir}/usr/src/${pkgname}-${pkgver}"
