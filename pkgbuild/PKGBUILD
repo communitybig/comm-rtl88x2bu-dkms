@@ -20,7 +20,7 @@ elif [ -e "pkgbuild.install" ]; then
 fi
 
 package() {
-    # Ajuste para o nome do diretório clonado
+    # Adjust for cloned directory name
     cd "${srcdir}/RTL88x2BU-Linux-Driver"
 
     # Install the DKMS source files

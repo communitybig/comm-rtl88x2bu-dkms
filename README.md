@@ -1,8 +1,8 @@
-# `comm-rtl88x2bu-dkms`
+# `rtl88x2bu-dkms`
 
 ## Package Description
 
-The `comm-rtl88x2bu-dkms` package provides a kernel module for Realtek RTL88x2BU-based wireless network adapters. This package is built using DKMS (Dynamic Kernel Module Support), allowing it to compile and install the module automatically whenever a kernel update occurs.
+The `rtl88x2bu-dkms` package provides a kernel module for Realtek RTL88x2BU-based wireless network adapters. This package is built using DKMS (Dynamic Kernel Module Support), allowing it to compile and install the module automatically whenever a kernel update occurs.
 
 This driver ensures compatibility and performance for devices using the Realtek RTL88x2BU chipset across various Linux distributions and kernel versions.
 
