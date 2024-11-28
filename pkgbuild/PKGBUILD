@@ -1,7 +1,7 @@
 # Maintainer (original): Rin Cat <dev@rincat.ch>
 # Modified by: Leonardo Berbert <leo4berbert@gmail.com>
 
-pkgname=comm-rtl88x2bu-dkms
+pkgname=rtl88x2bu-dkms
 pkgdesc="Kernel module for Realtek rtl88x2bu WiFi chipset"
 pkgver=$(date +%y.%m.%d)
 pkgrel=$(date +%H%M)
