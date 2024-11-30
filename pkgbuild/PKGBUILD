@@ -5,6 +5,7 @@ pkgname=rtl88x2bu-dkms
 pkgdesc="Kernel module for Realtek rtl88x2bu WiFi chipset"
 pkgver=$(date +%y.%m.%d)
 pkgrel=$(date +%H%M)
+depends=('dkms' 'linux-headers')
 arch=('any')
 license=('GPL2')
 #url="https://github.com/communitybig/${pkgname}"
